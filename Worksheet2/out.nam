@@ -1,0 +1,84 @@
+V -t * -v 1.0a5 -a 0
+A -t * -n 1 -p 0 -o 0x7fffffff -c 30 -a 1
+A -t * -h 1 -m 1073741823 -s 0
+n -t * -a 4 -s 4 -S UP -v circle -c black -i black
+n -t * -a 0 -s 0 -S UP -v circle -c black -i black
+n -t * -a 5 -s 5 -S UP -v circle -c black -i black
+n -t * -a 1 -s 1 -S UP -v circle -c black -i black
+n -t * -a 2 -s 2 -S UP -v circle -c black -i black
+n -t * -a 3 -s 3 -S UP -v circle -c black -i black
+l -t * -s 0 -d 1 -S UP -r 20000 -D 0.002 -c black
+l -t * -s 2 -d 3 -S UP -r 20000 -D 0.002 -c black
+l -t * -s 4 -d 5 -S UP -r 20000 -D 0.002 -c black
++ -t 0.1 -s 0 -d 1 -p cbr -e 19 -c 0 -i 0 -a 0 -x {0.0 1.0 0 ------- null}
+- -t 0.1 -s 0 -d 1 -p cbr -e 19 -c 0 -i 0 -a 0 -x {0.0 1.0 0 ------- null}
+h -t 0.1 -s 0 -d 1 -p cbr -e 19 -c 0 -i 0 -a 0 -x {0.0 1.0 -1 ------- null}
++ -t 0.1 -s 2 -d 3 -p cbr -e 14 -c 0 -i 1 -a 0 -x {2.0 3.0 0 ------- null}
+- -t 0.1 -s 2 -d 3 -p cbr -e 14 -c 0 -i 1 -a 0 -x {2.0 3.0 0 ------- null}
+h -t 0.1 -s 2 -d 3 -p cbr -e 14 -c 0 -i 1 -a 0 -x {2.0 3.0 -1 ------- null}
++ -t 0.1 -s 4 -d 5 -p cbr -e 2 -c 0 -i 2 -a 0 -x {4.0 5.0 0 ------- null}
+- -t 0.1 -s 4 -d 5 -p cbr -e 2 -c 0 -i 2 -a 0 -x {4.0 5.0 0 ------- null}
+h -t 0.1 -s 4 -d 5 -p cbr -e 2 -c 0 -i 2 -a 0 -x {4.0 5.0 -1 ------- null}
++ -t 0.102 -s 4 -d 5 -p cbr -e 2 -c 0 -i 3 -a 0 -x {4.0 5.0 1 ------- null}
+- -t 0.102 -s 4 -d 5 -p cbr -e 2 -c 0 -i 3 -a 0 -x {4.0 5.0 1 ------- null}
+h -t 0.102 -s 4 -d 5 -p cbr -e 2 -c 0 -i 3 -a 0 -x {4.0 5.0 -1 ------- null}
+r -t 0.1028 -s 4 -d 5 -p cbr -e 2 -c 0 -i 2 -a 0 -x {4.0 5.0 0 ------- null}
++ -t 0.104 -s 2 -d 3 -p cbr -e 14 -c 0 -i 4 -a 0 -x {2.0 3.0 1 ------- null}
++ -t 0.104 -s 4 -d 5 -p cbr -e 2 -c 0 -i 5 -a 0 -x {4.0 5.0 2 ------- null}
+- -t 0.104 -s 4 -d 5 -p cbr -e 2 -c 0 -i 5 -a 0 -x {4.0 5.0 2 ------- null}
+h -t 0.104 -s 4 -d 5 -p cbr -e 2 -c 0 -i 5 -a 0 -x {4.0 5.0 -1 ------- null}
+r -t 0.1048 -s 4 -d 5 -p cbr -e 2 -c 0 -i 3 -a 0 -x {4.0 5.0 1 ------- null}
+- -t 0.1056 -s 2 -d 3 -p cbr -e 14 -c 0 -i 4 -a 0 -x {2.0 3.0 1 ------- null}
+h -t 0.1056 -s 2 -d 3 -p cbr -e 14 -c 0 -i 4 -a 0 -x {2.0 3.0 -1 ------- null}
++ -t 0.106 -s 4 -d 5 -p cbr -e 2 -c 0 -i 6 -a 0 -x {4.0 5.0 3 ------- null}
+- -t 0.106 -s 4 -d 5 -p cbr -e 2 -c 0 -i 6 -a 0 -x {4.0 5.0 3 ------- null}
+h -t 0.106 -s 4 -d 5 -p cbr -e 2 -c 0 -i 6 -a 0 -x {4.0 5.0 -1 ------- null}
+r -t 0.1068 -s 4 -d 5 -p cbr -e 2 -c 0 -i 5 -a 0 -x {4.0 5.0 2 ------- null}
+r -t 0.1076 -s 2 -d 3 -p cbr -e 14 -c 0 -i 1 -a 0 -x {2.0 3.0 0 ------- null}
++ -t 0.108 -s 4 -d 5 -p cbr -e 2 -c 0 -i 7 -a 0 -x {4.0 5.0 4 ------- null}
+- -t 0.108 -s 4 -d 5 -p cbr -e 2 -c 0 -i 7 -a 0 -x {4.0 5.0 4 ------- null}
+h -t 0.108 -s 4 -d 5 -p cbr -e 2 -c 0 -i 7 -a 0 -x {4.0 5.0 -1 ------- null}
+r -t 0.1088 -s 4 -d 5 -p cbr -e 2 -c 0 -i 6 -a 0 -x {4.0 5.0 3 ------- null}
+r -t 0.1096 -s 0 -d 1 -p cbr -e 19 -c 0 -i 0 -a 0 -x {0.0 1.0 0 ------- null}
++ -t 0.11 -s 4 -d 5 -p cbr -e 2 -c 0 -i 8 -a 0 -x {4.0 5.0 5 ------- null}
+- -t 0.11 -s 4 -d 5 -p cbr -e 2 -c 0 -i 8 -a 0 -x {4.0 5.0 5 ------- null}
+h -t 0.11 -s 4 -d 5 -p cbr -e 2 -c 0 -i 8 -a 0 -x {4.0 5.0 -1 ------- null}
+r -t 0.1108 -s 4 -d 5 -p cbr -e 2 -c 0 -i 7 -a 0 -x {4.0 5.0 4 ------- null}
++ -t 0.112 -s 4 -d 5 -p cbr -e 2 -c 0 -i 9 -a 0 -x {4.0 5.0 6 ------- null}
+- -t 0.112 -s 4 -d 5 -p cbr -e 2 -c 0 -i 9 -a 0 -x {4.0 5.0 6 ------- null}
+h -t 0.112 -s 4 -d 5 -p cbr -e 2 -c 0 -i 9 -a 0 -x {4.0 5.0 -1 ------- null}
+r -t 0.1128 -s 4 -d 5 -p cbr -e 2 -c 0 -i 8 -a 0 -x {4.0 5.0 5 ------- null}
+r -t 0.1132 -s 2 -d 3 -p cbr -e 14 -c 0 -i 4 -a 0 -x {2.0 3.0 1 ------- null}
++ -t 0.114 -s 4 -d 5 -p cbr -e 2 -c 0 -i 10 -a 0 -x {4.0 5.0 7 ------- null}
+- -t 0.114 -s 4 -d 5 -p cbr -e 2 -c 0 -i 10 -a 0 -x {4.0 5.0 7 ------- null}
+h -t 0.114 -s 4 -d 5 -p cbr -e 2 -c 0 -i 10 -a 0 -x {4.0 5.0 -1 ------- null}
+r -t 0.1148 -s 4 -d 5 -p cbr -e 2 -c 0 -i 9 -a 0 -x {4.0 5.0 6 ------- null}
++ -t 0.116 -s 4 -d 5 -p cbr -e 2 -c 0 -i 11 -a 0 -x {4.0 5.0 8 ------- null}
+- -t 0.116 -s 4 -d 5 -p cbr -e 2 -c 0 -i 11 -a 0 -x {4.0 5.0 8 ------- null}
+h -t 0.116 -s 4 -d 5 -p cbr -e 2 -c 0 -i 11 -a 0 -x {4.0 5.0 -1 ------- null}
+r -t 0.1168 -s 4 -d 5 -p cbr -e 2 -c 0 -i 10 -a 0 -x {4.0 5.0 7 ------- null}
++ -t 0.118 -s 4 -d 5 -p cbr -e 2 -c 0 -i 12 -a 0 -x {4.0 5.0 9 ------- null}
+- -t 0.118 -s 4 -d 5 -p cbr -e 2 -c 0 -i 12 -a 0 -x {4.0 5.0 9 ------- null}
+h -t 0.118 -s 4 -d 5 -p cbr -e 2 -c 0 -i 12 -a 0 -x {4.0 5.0 -1 ------- null}
+r -t 0.1188 -s 4 -d 5 -p cbr -e 2 -c 0 -i 11 -a 0 -x {4.0 5.0 8 ------- null}
++ -t 0.12 -s 4 -d 5 -p cbr -e 2 -c 0 -i 13 -a 0 -x {4.0 5.0 10 ------- null}
+- -t 0.12 -s 4 -d 5 -p cbr -e 2 -c 0 -i 13 -a 0 -x {4.0 5.0 10 ------- null}
+h -t 0.12 -s 4 -d 5 -p cbr -e 2 -c 0 -i 13 -a 0 -x {4.0 5.0 -1 ------- null}
+r -t 0.1208 -s 4 -d 5 -p cbr -e 2 -c 0 -i 12 -a 0 -x {4.0 5.0 9 ------- null}
++ -t 0.122 -s 4 -d 5 -p cbr -e 2 -c 0 -i 14 -a 0 -x {4.0 5.0 11 ------- null}
+- -t 0.122 -s 4 -d 5 -p cbr -e 2 -c 0 -i 14 -a 0 -x {4.0 5.0 11 ------- null}
+h -t 0.122 -s 4 -d 5 -p cbr -e 2 -c 0 -i 14 -a 0 -x {4.0 5.0 -1 ------- null}
+r -t 0.1228 -s 4 -d 5 -p cbr -e 2 -c 0 -i 13 -a 0 -x {4.0 5.0 10 ------- null}
++ -t 0.124 -s 4 -d 5 -p cbr -e 2 -c 0 -i 15 -a 0 -x {4.0 5.0 12 ------- null}
+- -t 0.124 -s 4 -d 5 -p cbr -e 2 -c 0 -i 15 -a 0 -x {4.0 5.0 12 ------- null}
+h -t 0.124 -s 4 -d 5 -p cbr -e 2 -c 0 -i 15 -a 0 -x {4.0 5.0 -1 ------- null}
+r -t 0.1248 -s 4 -d 5 -p cbr -e 2 -c 0 -i 14 -a 0 -x {4.0 5.0 11 ------- null}
++ -t 0.126 -s 4 -d 5 -p cbr -e 2 -c 0 -i 16 -a 0 -x {4.0 5.0 13 ------- null}
+- -t 0.126 -s 4 -d 5 -p cbr -e 2 -c 0 -i 16 -a 0 -x {4.0 5.0 13 ------- null}
+h -t 0.126 -s 4 -d 5 -p cbr -e 2 -c 0 -i 16 -a 0 -x {4.0 5.0 -1 ------- null}
+r -t 0.1268 -s 4 -d 5 -p cbr -e 2 -c 0 -i 15 -a 0 -x {4.0 5.0 12 ------- null}
++ -t 0.128 -s 4 -d 5 -p cbr -e 2 -c 0 -i 17 -a 0 -x {4.0 5.0 14 ------- null}
+- -t 0.128 -s 4 -d 5 -p cbr -e 2 -c 0 -i 17 -a 0 -x {4.0 5.0 14 ------- null}
+h -t 0.128 -s 4 -d 5 -p cbr -e 2 -c 0 -i 17 -a 0 -x {4.0 5.0 -1 ------- null}
+r -t 0.1288 -s 4 -d 5 -p cbr -e 2 -c 0 -i 16 -a 0 -x {4.0 5.0 13 ------- null}
+r -t 0.1308 -s 4 -d 5 -p cbr -e 2 -c 0 -i 17 -a 0 -x {4.0 5.0 14 ------- null}
