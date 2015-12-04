@@ -1,5 +1,5 @@
 /*************************************************************
- * CLIENTE liga ao servidor (definido em argv[1]) no porto especificado  
+ * CLIENTE liga ao servidor (definido em argv[1]) no porto especificado
  * (em argv[2]), escrevendo a palavra predefinida (em argv[3]).
  * USO: >cliente <enderecoServidor>  <porto>  <Palavra>
  *************************************************************/
@@ -11,11 +11,14 @@
 #include <string.h>
 #include <unistd.h>
 #include <netdb.h>
+#define BUF_SIZE 1024
 
 void erro(char *msg);
 
 int main(int argc, char *argv[]) {
   char endServer[100];
+  char buffer[BUF_SIZE];
+  int nread = 0;
   int fd;
   struct sockaddr_in addr;
   struct hostent *hostPtr;
@@ -39,6 +42,9 @@ int main(int argc, char *argv[]) {
   if( connect(fd,(struct sockaddr *)&addr,sizeof (addr)) < 0)
 	erro("Connect");
   write(fd, argv[3], 1 + strlen(argv[3]));
+  nread = read(fd, buffer, BUF_SIZE-1);
+  buffer[nread] = '\0';
+  printf("%s\n",buffer);
   close(fd);
   exit(0);
 }
@@ -48,4 +54,3 @@ void erro(char *msg)
 	printf("Erro: %s\n", msg);
 	exit(-1);
 }
-

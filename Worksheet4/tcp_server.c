@@ -49,35 +49,29 @@ int main() {
   return 0;
 }
 
-/*Ver como devolver a cliente*/
-void retiraVogaisDevolveAoClient(char* clientMessage, int client_fd) {
-    char newStr[BUF_SIZE] = "";
-    int j = 0;
-    int len = strlen(clientMessage);
-    for (int i = 0; i < len; i++) {
-        if (clientMessage[i] == 'A' || clientMessage[i] == 'E' || clientMessage[i] == 'I' || clientMessage[i] == 'O' || clientMessage[i] == 'U'
-            || clientMessage[i] == 'a' || clientMessage[i] == 'e' || clientMessage[i] == 'i' || clientMessage[i] == 'o' || clientMessage[i] == 'u') {
-
-        }
-        else {
-            newStr[j] += clientMessage[i];
-            j++;
-        }
-    }
-    printf("%s\n", newStr);
-}
-
 void process_client(int client_fd)
 {
 	int nread = 0;
+    int j = 0;
 	char buffer[BUF_SIZE];
+    char newStr[BUF_SIZE];
 
 	nread = read(client_fd, buffer, BUF_SIZE-1);
 	buffer[nread] = '\0';
+    for (int i = 0; i < strlen(buffer); i++) {
+        if (buffer[i] == 'A' || buffer[i] == 'E' || buffer[i] == 'I' || buffer[i] == 'O' || buffer[i] == 'U'
+            || buffer[i] == 'a' || buffer[i] == 'e' || buffer[i] == 'i' || buffer[i] == 'o' || buffer[i] == 'u') {
+                newStr[j] += ' ';
+                j++;
+        }
+        else {
+            newStr[j] += buffer[i];
+            j++;
+        }
+    }
+    write(client_fd, newStr, sizeof(newStr));
 	printf("%s", buffer);
-    retiraVogaisDevolveAoClient(buffer, client_fd);
 	fflush(stdout);
-
 	close(client_fd);
 }
 
