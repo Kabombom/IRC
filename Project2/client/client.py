@@ -4,27 +4,6 @@ import json
 import os
 
 
-def read_file(filename):
-    file = open(filename, "r")
-    file_lines = []
-    for line in file:
-        file_list = line.split(',')
-        file_lines.append(file_list)
-    return file_lines
-
-
-def write_file(filename, lines):
-    file = open(filename, "w")
-    file_lines = read_file(filename)
-    for list in file_lines:
-        file.write(list)
-
-
-def upload(filename):
-    lines = read_file(filename)
-    return lines
-
-
 def filename_validation(filename):
     if not os.path.isfile(filename):
         return False
@@ -69,23 +48,16 @@ def menu():
     return int(option)
 
 
-def client(port, data):
+def create_socket(port):
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    print("Socket creation sucefull")
     host = socket.gethostname()
     try:
         client_socket.connect((host, port))
     except socket.error as e:
         print('Unable to connect, exception type %s' % e)
         sys.exit()
-
-    if isinstance(data, int):
-        data_string = str(data)
-        client_socket.send(data_string.encode('utf-8'))
-    if isinstance(data, list) or isinstance(data, dict):
-        data_string = json.dumps(data).encode('utf-8')
-        client_socket.send(data_string)
+    print("Socket creation sucefull")
 
 
 def main(client_socket):
