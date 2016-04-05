@@ -1,9 +1,7 @@
 import socket
 import sys
 import json
-import signal
-
-# TODO proteçao se nao estiver logado
+import os
 
 
 def create_socket(port):
@@ -84,14 +82,14 @@ def menu():
 
 
 def main():
-    users = {}
+    users_and_files = {}
     loggedin_user = []
     server_port = 9000
     conn = create_socket(server_port)
+    cache_conn = create_socket(9002)
 
     while True:
         choice = menu()
-        ###################################################################
         if choice == "0":
             conn.send(choice.encode("utf-8"))
 
@@ -99,10 +97,9 @@ def main():
             conn.send(request.encode("utf-8"))
 
             server_response = conn.recv(1024).decode("utf-8")
-            print(server_response)
             if server_response == "1":
                 print("Client registration successfull")
-        #####################################################################
+
         elif choice == "1":
             conn.send(choice.encode("utf-8"))
 
@@ -117,15 +114,11 @@ def main():
                 print("Logged to the server!")
             else:
                 print("Error tryig to login")
-        ######################################################################### ATE AQUI
+
         elif choice == "2":
-            conn.send(choice.encode("utf-8"))
+            for key in users_and_files:
+                print(users_and_files[key])
 
-            request = json.dumps(loggedin_user)
-            conn.send(request.encode("utf-8"))
-
-
-        ######################################################################### COMEÇA aqui
         elif choice == "3":
             conn.send(choice.encode('utf-8'))
 
@@ -133,42 +126,38 @@ def main():
             while not check_if_file_exists(filename):
                 filename = str(input("Filename to upload: "))
 
-            request = [filename, loggedin_user[0], loggedin_user[1]]
+            size = os.stat(filename).st_size
+            size = str(size)
+            request = [filename, size, loggedin_user[0], loggedin_user[1]]
             request = json.dumps(request)
             conn.send(request.encode("utf-8"))
-
             f = open(filename, "rb")
             read_binary = f.read(1024)
             while read_binary:
-                print("Sending...")
                 conn.send(read_binary)
                 read_binary = f.read(1024)
-                if
-            print("Finished sending")
             f.close()
-        ##############################################################################
+
+            response = conn.recv(1024).decode("utf-8")
+            if response == "1":
+                print("File sucefully sent")
+                key = loggedin_user[0] + loggedin_user[1]
+                if key in users_and_files:
+                    users_and_files[key].append(filename)
+                else:
+                    users_and_files[key] = [filename]
+
+            else:
+                print("Error sending file")
+
         elif choice == "4":
-            conn.send(str(choice).encode("utf-8"))
-
             filename = str(input("Filename to download: "))
-            conn.send(filename.encode('utf-8'))
+            cache_request = [filename, loggedin_user[0], loggedin_user[1]]
+            cache_request = json.dumps(cache_request)
+            cache_conn.send(cache_request.encode("utf-8"))
 
-            f = open(filename, 'wb')
-            server_response = conn.recv(1024)
-            while server_response:
-                print("Receiving...")
-                f.write(server_response)
-                server_response = conn.recv(1024)
-            print('Received')
-            f.close()
-        ################################################################################
         elif choice == 5:
             return
-
-
-def signal_handler(signal, frame):
-    print(' pressed...exiting now')
-    sys.exit(0)
 
 
 if __name__ == '__main__':

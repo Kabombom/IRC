@@ -3,10 +3,6 @@ import os
 import sys
 import json
 
-users_and_files = {}
-
-# TODO mudar como ver quem esta logado
-
 
 def read_users(user):
     file = open("users.txt", "r")
@@ -26,7 +22,6 @@ def write_user(user):
     f.close()
 
 
-# Function to create a socket
 def create_socket(port):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -55,33 +50,29 @@ def list_directory():
     os.listdir('')
 
 
-def upload(conn, filename):
-    f = open(filename, 'wb')
-    receive_file = conn.recv(1024)
+def upload(conn, filename, size):
+    f = open(filename, "wb")
+    size_received = 0
 
-    while receive_file:
-        print('Receiving...')
-        f.write(receive_file)
-        receive_file = conn.recv(1024)
-    print('Received')
+    while size_received < size:
+        file_bytes = conn.recv(1024)
+        f.write(file_bytes)
+        size_received += len(file_bytes)
     f.close()
 
 
-def download(conn):
-    filename = conn.recv(1024).decode('utf-8')
-    f = open(filename, 'rb')
-    receive_file = f.read(1024)
-    while receive_file:
-        print('Sending...')
-        conn.send(receive_file)
-        receive_file = f.read(1024)
-    print("Finished sending")
+def download(conn, request):
+    f = open(request, "rb")
+    read_binary = f.read(1024)
+    while read_binary:
+        conn.send(read_binary)
+        read_binary = f.read(1024)
     f.close()
 
 
 def client_handler(conn, option):
     print(option)
-    ################################################################
+
     if option == "0":
         request = conn.recv(1024)
         request = request.decode("utf-8")
@@ -94,8 +85,6 @@ def client_handler(conn, option):
         if not os.path.exists(directory):
             os.makedirs(directory)
 
-        users_and_files[directory] = []
-    ################################################################
     elif option == "1":
         request = conn.recv(1024).decode("utf-8")
         request = json.loads(request)
@@ -104,34 +93,48 @@ def client_handler(conn, option):
             conn.send("1".encode("utf-8"))
         else:
             conn.send("0".encode("utf-8"))
-    ################################################################ ATE AQUI
-    elif option == "2":
-        request = conn.recv(1024).decode("utf-8")
-        request = json.loads(request)
 
-    ################################################################
     elif option == "3":
         request = conn.recv(1024).decode("utf-8")
         request = json.loads(request)
 
         filename = request[0]
-        print(filename)
-        user = [request[1], request[2]]
-        print(user)
+        size = int(request[1])
+        user = [request[2], request[3]]
         path = user[0] + user[1]
-        print(path)
+
         os.chdir(path)
-        upload(conn, filename)
+        upload(conn, filename, size)
         os.chdir("..")
-    #################################################################
+
+        conn.send("1".encode("utf-8"))
+        print("File sucefully sent")
+
     elif option == "4":
-        request = ""
-        user = [request[1], request[2]]
-        download(conn)
+        request = conn.recv(1024).decode("utf-8")
+        request = json.loads(request)
+        filename = request[0]
+        path = request[0] + request[1]
+        os.chdir(path)
+
+        if not os.path.isfile(filename):
+            conn.send("0".encode("utf-8"))
+            return
+        else:
+            conn.send("1".encode("utf-8"))
+            size = os.stat(filename).st_size
+            request = str(size)
+            conn.send(request.encode("utf-8"))
+
+            f = open(request, "rb")
+            read_binary = f.read(1024)
+            while read_binary:
+                conn.send(read_binary)
+                read_binary = f.read(1024)
+            f.close()
 
 
 def main():
-
     server(9000)
 
 
